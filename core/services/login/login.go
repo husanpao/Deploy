@@ -2,6 +2,7 @@ package login
 
 import (
 	"github.com/sohaha/zlsgo/znet"
+	"github.com/zlsgo/zdb"
 	"net/http"
 	"service_manager/core/helper"
 )
@@ -20,10 +21,11 @@ type TokenData struct {
 }
 type loginController struct {
 	Prefix string
+	db     *zdb.DB
 }
 
-func NewLoginController() *loginController {
-	return &loginController{}
+func NewLoginController(db *zdb.DB) *loginController {
+	return &loginController{db: db}
 }
 
 func (t *loginController) Init(r *znet.Engine) error {

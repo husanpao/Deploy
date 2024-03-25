@@ -1,13 +1,17 @@
 package approval
 
-import "github.com/sohaha/zlsgo/znet"
+import (
+	"github.com/sohaha/zlsgo/znet"
+	"github.com/zlsgo/zdb"
+)
 
 type approvalController struct {
 	Prefix string
+	db     *zdb.DB
 }
 
-func NewApprovalController() *approvalController {
-	return &approvalController{Prefix: "/deploy"}
+func NewApprovalController(db *zdb.DB) *approvalController {
+	return &approvalController{Prefix: "/deploy", db: db}
 }
 
 // Init 该方法在绑定路由之前执行

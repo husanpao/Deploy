@@ -2,6 +2,7 @@ package route
 
 import (
 	"github.com/sohaha/zlsgo/znet"
+	"github.com/zlsgo/zdb"
 	"net/http"
 	"service_manager/core/helper"
 )
@@ -35,10 +36,11 @@ type PermissionRouter struct {
 
 type routeController struct {
 	Prefix string
+	db     *zdb.DB
 }
 
-func NewRouteController() *routeController {
-	return &routeController{}
+func NewRouteController(db *zdb.DB) *routeController {
+	return &routeController{db: db}
 }
 
 func (t *routeController) Init(r *znet.Engine) error {
